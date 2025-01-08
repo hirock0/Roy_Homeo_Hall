@@ -11,18 +11,46 @@ import {
 import { IoCloseSharp } from "react-icons/io5";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import LeftSection from "../home/leftSection/leftSection";
 
 const Nav = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [leftMenu, setLeftMenu] = useState(false);
 
   useEffect(() => {
     AOS.init();
   }, []);
 
+  useEffect(() => {
+    window.addEventListener("click", () => {
+      setLeftMenu(false);
+    });
+  }, []);
+
   return (
     <nav className="bg-white h-20 flex items-center shadow-md">
-      <div className="container mx-auto px-5 flex items-center justify-between gap-5">
-        <div className="">
+      <div className=" w-full px-5 flex items-center justify-between gap-5">
+        <div className=" flex items-center gap-3">
+          {/* -------------- */}
+          <div className="lg:hidden">
+            <button
+              onClick={(e) => {
+                e.stopPropagation(), setLeftMenu(!leftMenu);
+              }}
+              className=" "
+            >
+              <FaBars size={20} />
+            </button>
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className={`${
+                !leftMenu ? " -translate-x-full" : " translate-x-0"
+              } fixed left-0 top-20 h-full bg-white w-1/2 transition-all`}
+            >
+              <LeftSection />
+            </div>
+          </div>
+          {/* ---------------- */}
           <div className=" flex items-center gap-2">
             <div className=" border p-2 text-xl rounded-full font-semibold bg-gradient-to-tl from-red-400 to-teal-300">
               <span className=" text-red-600">R</span>.<span>H</span>

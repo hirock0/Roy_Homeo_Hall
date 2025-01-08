@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ReduxProvider from "@/utils/redux/reduxProvider";
 import Nav from "../components/nav/nav"
+import LeftSection from "../components/home/leftSection/leftSection"
+import CategoryBar from "../components/home/categoryBar/categoryBar"
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -30,7 +32,15 @@ export default function RootLayout({
       >
         <ReduxProvider>
           <Nav />
-          {children}
+          <div className="">
+            <CategoryBar />
+            <div className=" lg:flex lg:gap-5">
+              <div className=" w-2/6 max-lg:hidden">
+                <LeftSection />
+              </div>
+              {children}
+            </div>
+          </div>
         </ReduxProvider>
       </body>
     </html>
