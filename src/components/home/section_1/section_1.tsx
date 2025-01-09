@@ -1,5 +1,6 @@
 
-
+import Category_card from "@/components/category_card/category_card"
+import Discount_card from "@/components/discount_card/discount_card"
 
 // const card = [
 // 
@@ -9,9 +10,8 @@
 // https://i.ibb.co.com/xY85QVY/card-5.webp
 // https://i.ibb.co.com/pJ9V351/card-6.webp
 
-import Category_card from "@/components/category_card/category_card"
-import Discount_card from "@/components/discount_card/discount_card"
-import Image from "next/image"
+
+
 
 // 
 // 
@@ -93,18 +93,18 @@ const Section_1 = () => {
             <div className=" grid grid-cols-3 max-md:grid-cols-2 max-sm:grid-cols-1 gap-5">
                 {
                     CategoryCard?.map((item, index) => (
-                            <Category_card key={index} item={item}/>
+                        <Category_card key={index} item={item} />
                     ))
                 }
             </div>
             {/* ------------------- */}
             <h1 className=" my-10 text-5xl text-center font-semibold">Secially For Your</h1>
             <div className=" grid grid-cols-4 max-md:grid-cols-3 max-sm:grid-cols-1 gap-5">
-            {
+                {
                     DiscountCards?.map((item, index) => (
-                            <Discount_card key={index} item={item}/>
+                        <Discount_card key={index} item={item} />
                     ))
-                } 
+                }
             </div>
         </div>
     )
