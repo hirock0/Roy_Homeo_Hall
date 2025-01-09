@@ -15,7 +15,7 @@ const LeftSection = () => {
           {Soft?.map((item, index) => (
             <div className="" key={index}>
               <Link
-                href={"/"}
+                href={"/categories/health_care"}
                 className={`${
                   index === 0 && "border-t"
                 } border-b  border-slate-400 flex items-start justify-between h-16`}

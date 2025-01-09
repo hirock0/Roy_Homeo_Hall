@@ -45,13 +45,13 @@ const Nav = () => {
               onClick={(e) => e.stopPropagation()}
               className={`${
                 !leftMenu ? " -translate-x-full" : " translate-x-0"
-              } fixed left-0 top-20 h-full bg-white w-1/2 transition-all`}
+              } fixed z-20 left-0 top-20 h-full bg-white w-1/2 transition-all`}
             >
               <LeftSection />
             </div>
           </div>
           {/* ---------------- */}
-          <div className=" flex items-center gap-2">
+          <div className=" max-sm:hidden flex items-center gap-2">
             <div className=" border p-2 text-xl rounded-full font-semibold bg-gradient-to-tl from-red-400 to-teal-300">
               <span className=" text-red-600">R</span>.<span>H</span>
             </div>
@@ -108,7 +108,7 @@ const Nav = () => {
         {/* Mobile-view */}
         {/* secarch-section_start */}
         <div className=" lg:hidden flex items-center flex-1 border h-12 rounded-md overflow-hidden">
-          <select>
+          <select className=" max-sm:w-12">
             <option value="">Select</option>
             <option value="medicine">Medicine</option>
           </select>
@@ -120,7 +120,7 @@ const Nav = () => {
               className=" bg-teal-200/30 outline-none h-full pl-2 w-full"
               placeholder="Search..."
             />
-            <button className=" absolute right-0 bottom-0 top-0 w-12 bg-teal-600 flex items-center justify-center ">
+            <button className=" absolute right-0 bottom-0 top-0 w-12 max-sm:w-8 bg-teal-600 flex items-center justify-center ">
               <FaSearch />
             </button>
           </div>
@@ -130,7 +130,7 @@ const Nav = () => {
         <div
           className={`${
             !isMobileMenuOpen ? " translate-x-full" : "translate-x-0"
-          } text-white fixed right-0 top-0 h-full transition-all bg-slate-800/80 w-full lg:hidden p-5`}
+          } text-white fixed z-20 right-0 top-0 h-full transition-all bg-slate-800/80 w-full lg:hidden p-5`}
         >
           <div className=" flex justify-end">
             <button

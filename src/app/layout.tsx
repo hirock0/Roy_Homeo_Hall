@@ -34,11 +34,13 @@ export default function RootLayout({
           <Nav />
           <div className="">
             <CategoryBar />
-            <div className=" lg:flex lg:gap-5">
+            <div className=" lg:flex">
               <div className=" w-2/6 max-lg:hidden">
                 <LeftSection />
               </div>
-              {children}
+              <div className=" overflow-y-scroll scrollbar h-[calc(100vh-130px)] container mx-auto px-5">
+                {children}
+              </div>
             </div>
           </div>
         </ReduxProvider>
