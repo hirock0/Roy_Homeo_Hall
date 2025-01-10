@@ -6,10 +6,10 @@ import {
   FaSearch,
   FaMapMarkerAlt,
   FaBars,
-  FaTimes,
+
 } from "react-icons/fa";
 import { IoCloseSharp } from "react-icons/io5";
-import AOS from "aos";
+
 import "aos/dist/aos.css";
 import LeftSection from "../home/leftSection/leftSection";
 import Link from "next/link";
@@ -18,10 +18,6 @@ const Nav = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [leftMenu, setLeftMenu] = useState(false);
   const [loggeduser, setLoggedUser] = useState(null);
-
-  useEffect(() => {
-    AOS.init();
-  }, []);
 
   useEffect(() => {
     window.addEventListener("click", () => {
@@ -36,18 +32,15 @@ const Nav = () => {
           {/* -------------- */}
           <div className="lg:hidden">
             <button
-              onClick={(e) => {
-                e.stopPropagation(), setLeftMenu(!leftMenu);
-              }}
+              onClick={(e) => { e.stopPropagation(), setLeftMenu(!leftMenu) }}
               className=" "
             >
               <FaBars size={20} />
             </button>
             <div
               onClick={(e) => e.stopPropagation()}
-              className={`${
-                !leftMenu ? " -translate-x-full" : " translate-x-0"
-              } fixed z-20 left-0 top-20 h-full bg-white w-1/2 transition-all`}
+              className={`${!leftMenu ? " -translate-x-full" : " translate-x-0"
+                } fixed z-20 left-0 top-20 h-full bg-white w-1/2 transition-all`}
             >
               <LeftSection />
             </div>
@@ -96,22 +89,22 @@ const Nav = () => {
           {/* -------------------------- */}
           {/* user_section_start */}
           {loggeduser === null ? (
-                <div>
-                  <Link href={"/user/login"}>
-                    Login
-                  </Link>
-                </div>
-              ) : (
-                <div className=" border  flex items-center gap-3 p-2 rounded-md">
-                  <button className="bg-slate-200 w-12 h-12 flex items-center justify-center rounded-full">
-                    logo
-                  </button>
-                  <div className="">
-                    <h1>Hello,User</h1>
-                    <h1>Account $ Orders</h1>
-                  </div>
-                </div>
-              )}
+            <div>
+              <Link href={"/user/login"}>
+                Login
+              </Link>
+            </div>
+          ) : (
+            <div className=" border  flex items-center gap-3 p-2 rounded-md">
+              <button className="bg-slate-200 w-12 h-12 flex items-center justify-center rounded-full">
+                logo
+              </button>
+              <div className="">
+                <h1>Hello,User</h1>
+                <h1>Account $ Orders</h1>
+              </div>
+            </div>
+          )}
           {/* user-Section_start */}
         </div>
         {/* ------------ */}
@@ -138,9 +131,8 @@ const Nav = () => {
         {/* secarch-section_end */}
 
         <div
-          className={`${
-            !isMobileMenuOpen ? " translate-x-full" : "translate-x-0"
-          } text-white fixed z-20 right-0 top-0 h-full transition-all bg-slate-800/80 w-full lg:hidden p-5`}
+          className={`${!isMobileMenuOpen ? " translate-x-full" : "translate-x-0"
+            } text-white fixed z-20 right-0 top-0 h-full transition-all bg-slate-800/80 w-full lg:hidden p-5`}
         >
           <div className=" flex justify-end">
             <button

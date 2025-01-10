@@ -17,7 +17,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 <div className="  max-lg:hidden text-nowrap ">
                 <LeftSection />
                 </div>
-                <div className=" lg:w-5/6">
+                <div className=" lg:w-5/6 max-lg:w-full">
                 {children}
                 </div>
             </div>

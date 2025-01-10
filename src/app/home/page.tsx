@@ -5,7 +5,7 @@ const HomePage = () => {
         <main>
             <div className="">
                 <div className="overflow-y-scroll scrollbar h-[calc(100vh-130px)] px-5">
-                    <div className=" mt-5 max-sm:mt-2 container mx-auto ">
+                    <div className=" mt-5 max-sm:mt-2  ">
                         <Banner />
                     </div>
                     <section>

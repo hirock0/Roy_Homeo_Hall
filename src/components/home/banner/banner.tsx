@@ -45,7 +45,7 @@ const Banner = () => {
                     images?.map((image, index) => (
                         <SwiperSlide key={index}>
                             <div className=" " >
-                                <Image src={image?.img} alt="banner" width={5000} height={5000} priority className="" />
+                                <Image src={image?.img} alt="banner" width={5000} height={5000} priority className=" " />
                             </div>
                         </SwiperSlide>
                     ))
