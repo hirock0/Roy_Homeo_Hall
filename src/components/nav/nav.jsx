@@ -12,10 +12,12 @@ import { IoCloseSharp } from "react-icons/io5";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import LeftSection from "../home/leftSection/leftSection";
+import Link from "next/link";
 
 const Nav = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [leftMenu, setLeftMenu] = useState(false);
+  const [loggeduser, setLoggedUser] = useState(null);
 
   useEffect(() => {
     AOS.init();
@@ -93,15 +95,23 @@ const Nav = () => {
           {/* secarch-section_end */}
           {/* -------------------------- */}
           {/* user_section_start */}
-          <div className=" border flex items-center gap-3 p-2 rounded-md bg-slate-100">
-            <button className="bg-slate-200 w-12 h-12 flex items-center justify-center rounded-full">
-              logo
-            </button>
-            <div className="">
-              <h1>Hello,User</h1>
-              <h1>Account $ Orders</h1>
-            </div>
-          </div>
+          {loggeduser === null ? (
+                <div>
+                  <Link href={"/user/login"}>
+                    Login
+                  </Link>
+                </div>
+              ) : (
+                <div className=" border  flex items-center gap-3 p-2 rounded-md">
+                  <button className="bg-slate-200 w-12 h-12 flex items-center justify-center rounded-full">
+                    logo
+                  </button>
+                  <div className="">
+                    <h1>Hello,User</h1>
+                    <h1>Account $ Orders</h1>
+                  </div>
+                </div>
+              )}
           {/* user-Section_start */}
         </div>
         {/* ------------ */}
@@ -146,15 +156,22 @@ const Nav = () => {
             <div className=" border w-1/2 bg-slate-800 space-y-4 p-5">
               {/* ------ */}
               {/* user_section_start */}
-              <div className=" border  flex items-center gap-3 p-2 rounded-md">
-                <button className="bg-slate-200 w-12 h-12 flex items-center justify-center rounded-full">
-                  logo
-                </button>
-                <div className="">
-                  <h1>Hello,User</h1>
-                  <h1>Account $ Orders</h1>
+
+              {loggeduser === null ? (
+                <div>
+                  sdfgsdfg
                 </div>
-              </div>
+              ) : (
+                <div className=" border  flex items-center gap-3 p-2 rounded-md">
+                  <button className="bg-slate-200 w-12 h-12 flex items-center justify-center rounded-full">
+                    logo
+                  </button>
+                  <div className="">
+                    <h1>Hello,User</h1>
+                    <h1>Account $ Orders</h1>
+                  </div>
+                </div>
+              )}
               {/* user-Section_start */}
 
               {/* --------- */}

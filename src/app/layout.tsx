@@ -2,9 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ReduxProvider from "@/utils/redux/reduxProvider";
-import Nav from "../components/nav/nav"
-import LeftSection from "../components/home/leftSection/leftSection"
-import CategoryBar from "../components/home/categoryBar/categoryBar"
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -31,18 +28,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ReduxProvider>
-          <Nav />
-          <div className="">
-            <CategoryBar />
-            <div className=" lg:flex">
-              <div className=" w-2/6 max-lg:hidden">
-                <LeftSection />
-              </div>
-              <div className=" overflow-y-scroll scrollbar h-[calc(100vh-130px)] container mx-auto px-5">
-                {children}
-              </div>
-            </div>
-          </div>
+          {children}
         </ReduxProvider>
       </body>
     </html>

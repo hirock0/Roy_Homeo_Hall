@@ -8,7 +8,14 @@ const nextConfig: NextConfig = {
         hostname: "**"
       }
     ]
-  }
+  },
+  redirects: async () => [
+    {
+      source: "/",
+      destination: "/home",
+      permanent: true
+    }
+  ]
 };
 
 export default nextConfig;
