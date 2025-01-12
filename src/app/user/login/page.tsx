@@ -144,7 +144,7 @@ export default function LoginPage() {
 
             {/* Forgot Password */}
             <div className="mb-4 text-right">
-              <Link href="/forgot-password" className="text-sm text-blue-500 hover:underline">
+              <Link href="/" className="text-sm text-blue-500 hover:underline">
                 Forgot Password?
               </Link>
             </div>
@@ -192,7 +192,7 @@ export default function LoginPage() {
             </p>
             <p className="text-sm mt-2">
               By logging in, you agree to our
-              <Link href={"/policy"} className="text-blue-500 hover:underline">
+              <Link href={"/"} className="text-blue-500 hover:underline">
                 Privacy Policy
               </Link>
               .
