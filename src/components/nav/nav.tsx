@@ -27,7 +27,7 @@ const Nav = () => {
   const dispatch = useDispatch();
   const loggedUser = useSelector((state:any) => state?.user);
   const onLogout = async () => {
-    const response = await axios.get("/pages/api/logout")
+    const response = await axios.get(`${process.env.DOMAIN_URL}/pages/api/logout`)
     if (response?.data?.success) {
       swal({
         title: response?.data?.message,

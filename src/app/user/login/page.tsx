@@ -30,7 +30,7 @@ export default function LoginPage() {
   const onSubmit = async (data: LoginFormInputs) => {
     setLoading(true)
     try {
-      const response = await axios.post("/pages/api/login", data)
+      const response = await axios.post(`${process.env.DOMAIN_URL}/pages/api/login`, data)
       if (response?.data?.success) {
         swal({
           title: response?.data?.message,

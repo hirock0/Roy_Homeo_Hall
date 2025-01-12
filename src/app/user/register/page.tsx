@@ -40,7 +40,7 @@ console.log(state)
 
         setLoading(true)
         try {
-            const response = await axios.post("/pages/api/register", data)
+            const response = await axios.post(`${process.env.DOMAIN_URL}/pages/api/register`, data)
             if (response?.data?.success) {
                 swal({
                     title: response?.data?.message,
