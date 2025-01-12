@@ -15,7 +15,7 @@ const initialState = {
 } as InitialState
 
 export const allApiData: any = createAsyncThunk("allApiData", async () => {
-    const response = await axios.get(`${process.env.DOMAIN_URL}/pages/api/authUser`)
+    const response = await axios.get(`/pages/api/authUser`)
     const loggedUser = response?.data?.verifiedToken
     return loggedUser
 })
