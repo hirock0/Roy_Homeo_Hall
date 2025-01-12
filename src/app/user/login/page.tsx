@@ -7,6 +7,9 @@ import { FcGoogle } from 'react-icons/fc';
 import { FiUserPlus, FiLock, FiMail, FiArrowLeft } from 'react-icons/fi';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import axios from 'axios';
+import swal from 'sweetalert';
+import { useSearchParams } from 'next/navigation';
 interface LoginFormInputs {
   email: string;
   password: string;
@@ -14,15 +17,40 @@ interface LoginFormInputs {
 
 export default function LoginPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const redirectPath = searchParams?.get("redirect") || "/"
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false)
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormInputs>();
 
-  const onSubmit = (data: LoginFormInputs) => {
-    console.log(data);
+  const onSubmit = async (data: LoginFormInputs) => {
+    setLoading(true)
+    try {
+      const response = await axios.post("/pages/api/login", data)
+      if (response?.data?.success) {
+        swal({
+          title: response?.data?.message,
+          icon: "success"
+        })
+        setLoading(false)
+        router.push(redirectPath)
+
+      } else {
+        swal({
+          title: response?.data?.message,
+          icon: "warning"
+        })
+        setLoading(false)
+      }
+    } catch (error) {
+      setLoading(false)
+      throw new Error(String(error))
+    }
+
   };
 
   const togglePasswordVisibility = () => {
@@ -121,16 +149,26 @@ export default function LoginPage() {
               </Link>
             </div>
 
-            {/* Submit Button */}
+
             <button
               type="submit"
               className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
             >
-              <FiLock size={18} />
-              Login
+
+
+              {
+                !loading ?
+                  <span className=' flex items-center gap-3'>
+                    <FiLock size={18} />
+                    Login
+                  </span>
+                  :
+
+                  <div className=' loading loading-spinner loading-md'></div>
+              }
+
             </button>
 
-            {/* Login with Google */}
             <button
               type="button"
               className="w-full bg-gray-100 hover:bg-gray-200 text-black font-bold py-2 px-4 rounded flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-gray-300 mb-4"
@@ -145,7 +183,7 @@ export default function LoginPage() {
             <p className="text-sm">
               Do not have an account?
               <Link
-                href="/user/register"
+                href={`/user/register?redirect=${redirectPath}`}
                 className="text-blue-500 hover:underline flex items-center justify-center gap-1"
               >
                 <FiUserPlus size={16} />
@@ -154,7 +192,7 @@ export default function LoginPage() {
             </p>
             <p className="text-sm mt-2">
               By logging in, you agree to our
-              <Link href="/policy" className="text-blue-500 hover:underline">
+              <Link href={"/policy"} className="text-blue-500 hover:underline">
                 Privacy Policy
               </Link>
               .

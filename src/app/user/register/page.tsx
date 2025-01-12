@@ -6,8 +6,13 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import { FiUser, FiMail, FiLock, FiUserPlus, FiArrowLeft } from 'react-icons/fi';
 import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import axios from 'axios';
+import swal from 'sweetalert';
+
 interface RegistrationFormInputs {
     name: string;
     email: string;
@@ -16,18 +21,48 @@ interface RegistrationFormInputs {
 }
 
 export default function RegistrationPage() {
+    const router = useRouter();
+    const searchParams = useSearchParams()
+    const state = searchParams?.get("redirect") || "/"
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [loading, setLoading] = useState(false)
+console.log(state)
     const {
         register,
         handleSubmit,
         formState: { errors },
         watch,
     } = useForm<RegistrationFormInputs>();
-    const router = useRouter();
 
-    const onSubmit = (data: RegistrationFormInputs) => {
-        console.log(data);
+
+    const onSubmit = async (data: RegistrationFormInputs) => {
+
+        setLoading(true)
+        try {
+            const response = await axios.post("/pages/api/register", data)
+            if (response?.data?.success) {
+                swal({
+                    title: response?.data?.message,
+                    icon: "success"
+                })
+                router.push(state)
+                setLoading(false)
+            } else {
+                swal({
+                    title: response?.data?.message,
+                    icon: "warning"
+                })
+                setLoading(false)
+            }
+
+
+        } catch (error) {
+            setLoading(false)
+            throw new Error(String(error))
+
+        }
+
     };
 
     const togglePasswordVisibility = () => {
@@ -41,9 +76,9 @@ export default function RegistrationPage() {
     const password = watch('password');
 
     return (
-        <div className="flex flex-col md:flex-row h-screen bg-zinc-100">
+        <div className="flex  md:flex-row md:h-screen bg-zinc-100">
             {/* Left Side with Image */}
-            <div className="md:w-1/2 w-full h-64 md:h-full bg-gray-200">
+            <div className="md:w-1/2 max-md:hidden w-full h-64 md:h-full bg-gray-200">
                 <Image
                     src="https://i.ibb.co.com/JqYxCQZ/ergonomic-office-chair.webp" // Replace with your image path
                     alt="Registration"
@@ -186,8 +221,17 @@ export default function RegistrationPage() {
                             type="submit"
                             className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
                         >
-                            <FiUserPlus size={18} />
-                            Register
+                            {
+                                !loading ?
+                                    <span className=' flex items-center gap-3'>
+                                        <FiUserPlus size={18} />
+                                        Register
+                                    </span>
+                                    :
+
+                                    <div className=' loading loading-spinner loading-md'></div>
+                            }
+
                         </button>
 
                         {/* Register with Google */}
@@ -204,13 +248,13 @@ export default function RegistrationPage() {
                     <div className="text-center mt-4">
                         <p className="text-sm">
                             Already have an account?{' '}
-                            <Link href="/login" className="text-blue-500 hover:underline">
+                            <Link href={"/login"} className="text-blue-500 hover:underline">
                                 Login
                             </Link>
                         </p>
                         <p className="text-sm mt-2">
                             By creating an account, you agree to our{' '}
-                            <Link href="/policy" className="text-blue-500 hover:underline">
+                            <Link href={"/policy"} className="text-blue-500 hover:underline">
                                 Privacy Policy
                             </Link>
                             .

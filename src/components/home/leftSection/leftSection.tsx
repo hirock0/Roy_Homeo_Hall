@@ -4,7 +4,7 @@ import { IoMdFlash } from "react-icons/io";
 import Link from "next/link";
 const LeftSection = () => {
   return (
-    <main className=" w-full container mx-auto px-5 pb-10 overflow-y-scroll h-[calc(100vh-130px)]">
+    <main className={`scrollbar w-full container mx-auto px-5 pb-10 overflow-y-scroll h-[calc(100vh-130px)]`}>
       <div className="">
         {/* ------------ */}
         <div className="">

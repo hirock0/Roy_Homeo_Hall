@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import ReduxProvider from "@/utils/redux/reduxProvider";
 import { Roboto, Spline_Sans_Mono } from "next/font/google";
 import "./globals.css";

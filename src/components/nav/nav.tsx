@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { TbLayoutNavbarExpand } from "react-icons/tb";
 import {
   FaShoppingCart,
   FaSearch,
@@ -13,12 +14,37 @@ import { IoCloseSharp } from "react-icons/io5";
 import "aos/dist/aos.css";
 import LeftSection from "../home/leftSection/leftSection";
 import Link from "next/link";
+import { useSelector, useDispatch } from "react-redux";
+import { allApiData } from "@/utils/redux/slices/slice";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import swal from "sweetalert";
 
 const Nav = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [leftMenu, setLeftMenu] = useState(false);
-  const [loggeduser, setLoggedUser] = useState(null);
+  const router = useRouter()
+  const dispatch = useDispatch();
+  const loggedUser = useSelector((state:any) => state?.user);
+  const onLogout = async () => {
+    const response = await axios.get("/pages/api/logout")
+    if (response?.data?.success) {
+      swal({
+        title: response?.data?.message,
+        icon: "success"
+      })
+      router.push("/")
+      window.location.reload()
+    }
+  }
 
+  useEffect(() => {
+    const response = () => {
+      dispatch(allApiData())
+    }
+    response()
+    return () => response()
+  }, [])
   useEffect(() => {
     window.addEventListener("click", () => {
       setLeftMenu(false);
@@ -35,7 +61,7 @@ const Nav = () => {
               onClick={(e) => { e.stopPropagation(), setLeftMenu(!leftMenu) }}
               className=" "
             >
-              <FaBars size={20} />
+              <TbLayoutNavbarExpand size={30} />
             </button>
             <div
               onClick={(e) => e.stopPropagation()}
@@ -88,22 +114,25 @@ const Nav = () => {
           {/* secarch-section_end */}
           {/* -------------------------- */}
           {/* user_section_start */}
-          {loggeduser === null ? (
+          {loggedUser == null || loggedUser == undefined ? (
             <div>
               <Link href={"/user/login"}>
                 Login
               </Link>
             </div>
           ) : (
-            <div className=" border  flex items-center gap-3 p-2 rounded-md">
-              <button className="bg-slate-200 w-12 h-12 flex items-center justify-center rounded-full">
-                logo
-              </button>
-              <div className="">
-                <h1>Hello,User</h1>
-                <h1>Account $ Orders</h1>
-              </div>
+            <div className="">
+              <button onClick={() => onLogout()}>Logout</button>
             </div>
+            // <div className=" border  flex items-center gap-3 p-2 rounded-md">
+            //   <button className="bg-slate-200 w-12 h-12 flex items-center justify-center rounded-full">
+            //     logo
+            //   </button>
+            //   <div className="">
+            //     <h1>Hello,User</h1>
+            //     <h1>Account $ Orders</h1>
+            //   </div>
+            // </div>
           )}
           {/* user-Section_start */}
         </div>
@@ -146,27 +175,6 @@ const Nav = () => {
           </div>
           <div className=" flex  justify-end h-full mt-5">
             <div className=" border w-1/2 bg-slate-800 space-y-4 p-5">
-              {/* ------ */}
-              {/* user_section_start */}
-
-              {loggeduser === null ? (
-                <div>
-                  sdfgsdfg
-                </div>
-              ) : (
-                <div className=" border  flex items-center gap-3 p-2 rounded-md">
-                  <button className="bg-slate-200 w-12 h-12 flex items-center justify-center rounded-full">
-                    logo
-                  </button>
-                  <div className="">
-                    <h1>Hello,User</h1>
-                    <h1>Account $ Orders</h1>
-                  </div>
-                </div>
-              )}
-              {/* user-Section_start */}
-
-              {/* --------- */}
               {/* location_start */}
 
               <div className=" ">
@@ -179,6 +187,39 @@ const Nav = () => {
                 </div>
               </div>
               {/* location_end */}
+              {/* ------ */}
+              {/* user_section_start */}
+
+              {loggedUser == null || loggedUser == undefined ? (
+                            <div>
+                            <Link href={"/user/login"}>
+                              Login
+                            </Link>
+                          </div>
+                        ) : (
+                          <div className="">
+                            <button onClick={() => onLogout()}>Logout</button>
+                          </div>
+              //   <div>
+              //     <Link href={"/user/login"}>
+              //       Login
+              //     </Link>
+              //   </div>
+              // ) : (
+              //   <div className=" border  flex items-center gap-3 p-2 rounded-md">
+              //     <button className="bg-slate-200 w-12 h-12 flex items-center justify-center rounded-full">
+              //       logo
+              //     </button>
+              //     <div className="">
+              //       <h1>Hello,User</h1>
+              //       <h1>Account $ Orders</h1>
+              //     </div>
+              //   </div>
+              )}
+              {/* user-Section_start */}
+
+              {/* --------- */}
+
             </div>
           </div>
         </div>
