@@ -8,7 +8,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             <div className=" fixed left-0 right-0 z-30 top-0">
                 <Nav />
             </div>
-            <div className="  bg-white z-20 sticky top-20 overflow-hidden ">
+            <div className="  bg-white z-20 sticky top-20 overflow-hidden px-5 shadow-lg ">
                 <CategoryBar />
             </div>
             <div className=" flex justify-between mt-24 ">
