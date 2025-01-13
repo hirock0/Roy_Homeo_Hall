@@ -36,8 +36,9 @@ export default function LoginPage() {
           title: response?.data?.message,
           icon: "success"
         })
-        setLoading(false)
         router.push(redirectPath)
+        setLoading(false)
+
 
       } else {
         swal({

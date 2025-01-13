@@ -4,7 +4,7 @@ import { IoMdFlash } from "react-icons/io";
 import Link from "next/link";
 const LeftSection = () => {
   return (
-    <main className={`scrollbar w-full container mx-auto px-5 pb-10 overflow-y-scroll h-[calc(100vh-130px)]`}>
+    <main className={` w-full container mx-auto px-5 pb-10 `}>
       <div className="">
         {/* ------------ */}
         <div className="">
@@ -21,11 +21,13 @@ const LeftSection = () => {
                 } border-b  border-slate-400 flex items-start justify-between h-16`}
               >
                 <div className=" flex items-center gap-2 h-full ">
-                  <div className="   w-20 flex items-center justify-center">
-                    <IoMdFlash size={52} className=" text-yellow-600" />
+                  <div className="   flex items-center justify-center">
+                    <IoMdFlash size={52} className=" max-sm:w-10 text-yellow-600" />
                   </div>
                   <h1>Flash sale</h1>
                 </div>
+
+
                 <div className=" h-full flex items-center justify-center">
                   <MdKeyboardArrowRight size={25} />
                 </div>

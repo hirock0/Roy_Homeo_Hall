@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { TbLayoutNavbarExpand } from "react-icons/tb";
+import Style from "./nav.module.css"
 import {
   FaShoppingCart,
   FaSearch,
@@ -25,7 +26,7 @@ const Nav = () => {
   const [leftMenu, setLeftMenu] = useState(false);
   const router = useRouter()
   const dispatch = useDispatch();
-  const loggedUser = useSelector((state:any) => state?.user);
+  const loggedUser = useSelector((state: any) => state?.user);
   const onLogout = async () => {
     const response = await axios.get(`/pages/api/logout`)
     if (response?.data?.success) {
@@ -66,10 +67,11 @@ const Nav = () => {
             <div
               onClick={(e) => e.stopPropagation()}
               className={`${!leftMenu ? " -translate-x-full" : " translate-x-0"
-                } fixed z-20 left-0 top-20 h-full bg-white w-1/2 transition-all`}
+                } fixed z-30 ${Style.scrollBar} overflow-y-scroll h-[700px] pb-40  left-0 top-32 pt-5  bg-white w-1/2 max-sm:w-4/6 transition-all`}
             >
               <LeftSection />
             </div>
+
           </div>
           {/* ---------------- */}
           <div className=" max-sm:hidden flex items-center gap-2">
@@ -94,7 +96,7 @@ const Nav = () => {
           {/* locations-end */}
           {/* secarch-section_start */}
           <div className=" flex items-center flex-1 border h-12 rounded-md overflow-hidden">
-            <select>
+            <select className=" h-full outline-none">
               <option value="">Select</option>
               <option value="medicine">Medicine</option>
             </select>
@@ -106,7 +108,7 @@ const Nav = () => {
                 className=" bg-teal-200/30 outline-none h-full pl-2 w-full"
                 placeholder="Search..."
               />
-              <button className=" absolute right-0 bottom-0 top-0 w-12 bg-teal-600 flex items-center justify-center ">
+              <button className=" absolute right-0  bottom-0 top-0 w-12 bg-teal-600 flex items-center justify-center ">
                 <FaSearch />
               </button>
             </div>
@@ -124,15 +126,7 @@ const Nav = () => {
             <div className="">
               <button onClick={() => onLogout()}>Logout</button>
             </div>
-            // <div className=" border  flex items-center gap-3 p-2 rounded-md">
-            //   <button className="bg-slate-200 w-12 h-12 flex items-center justify-center rounded-full">
-            //     logo
-            //   </button>
-            //   <div className="">
-            //     <h1>Hello,User</h1>
-            //     <h1>Account $ Orders</h1>
-            //   </div>
-            // </div>
+
           )}
           {/* user-Section_start */}
         </div>
@@ -140,7 +134,7 @@ const Nav = () => {
         {/* Mobile-view */}
         {/* secarch-section_start */}
         <div className=" lg:hidden flex items-center flex-1 border h-12 rounded-md overflow-hidden">
-          <select className=" max-sm:w-12">
+          <select className=" h-full outline-none max-sm:w-12">
             <option value="">Select</option>
             <option value="medicine">Medicine</option>
           </select>
@@ -161,7 +155,7 @@ const Nav = () => {
 
         <div
           className={`${!isMobileMenuOpen ? " translate-x-full" : "translate-x-0"
-            } text-white fixed z-20 right-0 top-0 h-full transition-all bg-slate-800/80 w-full lg:hidden p-5`}
+            } text-white fixed  z-40 right-0 top-0 h-full transition-all bg-slate-800/80 w-full lg:hidden p-5`}
         >
           <div className=" flex justify-end">
             <button
@@ -191,30 +185,16 @@ const Nav = () => {
               {/* user_section_start */}
 
               {loggedUser == null || loggedUser == undefined ? (
-                            <div>
-                            <Link href={"/user/login"}>
-                              Login
-                            </Link>
-                          </div>
-                        ) : (
-                          <div className="">
-                            <button onClick={() => onLogout()}>Logout</button>
-                          </div>
-              //   <div>
-              //     <Link href={"/user/login"}>
-              //       Login
-              //     </Link>
-              //   </div>
-              // ) : (
-              //   <div className=" border  flex items-center gap-3 p-2 rounded-md">
-              //     <button className="bg-slate-200 w-12 h-12 flex items-center justify-center rounded-full">
-              //       logo
-              //     </button>
-              //     <div className="">
-              //       <h1>Hello,User</h1>
-              //       <h1>Account $ Orders</h1>
-              //     </div>
-              //   </div>
+                <div>
+                  <Link href={"/user/login"}>
+                    Login
+                  </Link>
+                </div>
+              ) : (
+                <div className="">
+                  <button onClick={() => onLogout()}>Logout</button>
+                </div>
+
               )}
               {/* user-Section_start */}
 
