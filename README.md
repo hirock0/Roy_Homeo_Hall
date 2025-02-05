@@ -67,7 +67,7 @@ Roy_Homeo-Hall is a modern **homeopathy medicine e-commerce platform** built wit
 ---
 1. **Clone the repository**
    ```sh
-   git clone https://github.com/your-username/Roy_Homeo-Hall.git
+   git clone https://github.com/hirock0/Roy_Homeo_Hall.git
    cd Roy_Homeo-Hall
 ## Install server dependencies
 - npm install
