@@ -43,8 +43,4 @@ Roy_Homeo-Hall is a modern **homeopathy medicine e-commerce platform** built wit
     "sweetalert": "^2.1.2",
     "swiper": "^11.2.0"
 }
-📖 Installation & Setup
-1️⃣ Clone the Repository
 
-git clone https://github.com/hirock0/Roy_Homeo-Hall.git
-cd Roy_Homeo-Hall
