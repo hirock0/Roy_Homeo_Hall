@@ -1,5 +1,5 @@
 # 🌿 Roy_Homeo-Hall – Homeopathy Medicine Selling Website  
-
+## Live Link : [https://roy-homeo-hall.vercel.app/home]
 Roy_Homeo-Hall is a modern **homeopathy medicine e-commerce platform** built with **Next.js 15 and TypeScript**. It provides a seamless shopping experience with authentication, product management, and secure transactions.
 
 ## 🚀 Features  
@@ -19,28 +19,67 @@ Roy_Homeo-Hall is a modern **homeopathy medicine e-commerce platform** built wit
 - **Database:** MongoDB (Mongoose ORM)  
 - **Deployment:** Vercel  
 
-## 📦 Dependencies  
-```json
-"dependencies": {
-    "@reduxjs/toolkit": "^2.5.0",
-    "@tanstack/react-query": "^5.63.0",
-    "aos": "^2.3.4",
-    "axios": "^1.7.9",
-    "bcryptjs": "^2.4.3",
-    "cloudinary": "^2.5.1",
-    "framer-motion": "^11.16.1",
-    "jose": "^5.9.6",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.9.4",
-    "next": "15.1.4",
-    "next-auth": "^4.24.11",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-hook-form": "^7.54.2",
-    "react-icons": "^5.4.0",
-    "react-redux": "^9.2.0",
-    "redux": "^5.0.1",
-    "sweetalert": "^2.1.2",
-    "swiper": "^11.2.0"
-}
+## 📦 Dependencies
+### Main Dependencies
+#### The project is built using Next.js with TypeScript and the following key libraries:
 
+- @reduxjs/toolkit - State management
+- @tanstack/react-query - API data fetching
+- AOS - Scroll animations
+- Axios - HTTP requests
+- Bcrypt.js - Password hashing
+- Cloudinary - Image storage
+- Framer Motion - UI animations
+- Jose - JWT utilities
+- jsonwebtoken - User authentication
+- Mongoose - MongoDB ORM
+- Next.js - React framework
+- NextAuth.js - Authentication
+- React - Frontend library
+- React Hook Form - Form validation
+- React Icons - Icon library
+- React Redux - Redux state management
+- Redux - State container
+- SweetAlert - Alert popups
+- Swiper - Image sliders
+
+### Development Dependencies
+ 
+- @types/bcryptjs - Type definitions
+- @types/jsonwebtoken - Type definitions
+- @types/node - TypeScript support for Node.js
+- @types/react - Type definitions for React
+- @types/react-dom - Type definitions for React DOM
+- DaisyUI - UI components for Tailwind CSS
+- ESLint - Code linting
+- ESLint Config Next - ESLint configuration for Next.js
+- PostCSS - CSS processing
+- Tailwind CSS - CSS framework
+- TypeScript - Type safety
+
+## 🔧 Installation
+
+### Prerequisites
+- **Node.js** (Latest LTS)
+- **MongoDB** (Local or Cloud)
+- **Cloudinary** (for image hosting)
+
+---
+1. **Clone the repository**
+   ```sh
+   git clone https://github.com/your-username/Roy_Homeo-Hall.git
+   cd Roy_Homeo-Hall
+## Install server dependencies
+- npm install
+
+## To run project
+- npm run dev
+
+## ⚙️ Configuration
+### Create a .env.local file and configure your environment variables:
+
+- MONGO_URI=your_mongodb_connection_string
+- NEXTAUTH_SECRET=your_secret_key
+- CLOUDINARY_CLOUD_NAME=your_cloud_name
+- CLOUDINARY_API_KEY=your_api_key
+- CLOUDINARY_API_SECRET=your_api_secret
